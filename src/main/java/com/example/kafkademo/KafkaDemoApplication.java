@@ -13,6 +13,9 @@ public class KafkaDemoApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext run = SpringApplication.run(KafkaDemoApplication.class, args);
 		MessageProducer message = run.getBean("messageProducer", MessageProducer.class);
-		message.sendMessage("sample","Hi this is your first message");
+		MessageDto messageDto = MessageDto.builder()
+				.message("Hi this is your first message")
+						.build();
+		message.sendMessage("sample",messageDto);
 	}
 }
